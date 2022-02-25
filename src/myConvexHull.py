@@ -15,7 +15,7 @@ class myConvexHull:
     def __init__(self, Points):
         self.allPoints = Points             ## Himpunan semua titik
         self.countPoints = len(Points)      ## Jumlah titik dalam himpunan titik
-        self.vertices = self.convexHull()   ## Himpunan garis pembentuk convex hull
+        self.simplices = self.convexHull()   ## Himpunan garis pembentuk convex hull
         
 
     # Method utama untuk menghasilkan vertices (garis-garis) yang membentuk convex hull
