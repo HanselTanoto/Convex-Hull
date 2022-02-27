@@ -18,7 +18,7 @@ while (True):
 
     # Visualisasi hasil ConvexHull - iris-sepal
     plt.figure(figsize = (10, 6))
-    colors = ['b','r','g','c','y','m','k']
+    colors = ['r','g','b','c','m','y','k','grey','violet','saddlebrown','purple']
     plt.title("{} Vs {}".format(data.feature_names[atr1], data.feature_names[atr2]).replace("_"," ").title())
     plt.xlabel(data.feature_names[atr1].title())
     plt.ylabel(data.feature_names[atr2].title())
@@ -26,9 +26,9 @@ while (True):
         bucket = df[df['Target'] == i]
         bucket = bucket.iloc[:,[atr1,atr2]].values
         hull = myConvexHull.myConvexHull(bucket) #bagian ini diganti dengan hasil implementasi ConvexHull Divide & Conquer
-        plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[i])
+        plt.scatter(bucket[:, 0], bucket[:, 1], c=colors[i % len(colors)], label=data.target_names[i])
         for simplex in hull.simplices:
-            plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[i])
+            plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[i % len(colors)])
         plt.legend()
     x = input("\nPress enter to show figure...")
     plt.show()

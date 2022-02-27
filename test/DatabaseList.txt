@@ -1,3 +1,0 @@
-1. Iris plants dataset
-2. Wine recognition dataset
-3. Breast cancer wisconsin (diagnostic) dataset

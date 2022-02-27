@@ -13,14 +13,14 @@ LEFT = -1
 class myConvexHull:
     # Inisialisasi atribut
     def __init__(self, Points):
-        self.allPoints = Points             ## Himpunan semua titik
-        self.countPoints = len(Points)      ## Jumlah titik dalam himpunan titik
-        self.simplices = self.convexHull()   ## Himpunan garis pembentuk convex hull
+        self.allPoints = Points                             ## Himpunan semua titik
+        self.countPoints = len(Points)                      ## Jumlah titik dalam himpunan titik
+        self.allPointsIdx = list(range(0,self.countPoints)) ## Indeks himpunan titik
+        self.simplices = self.convexHull()                  ## Himpunan garis pembentuk convex hull
         
 
     # Method utama untuk menghasilkan vertices (garis-garis) yang membentuk convex hull
     def convexHull(self):
-        allPointsIdx = list(range(0,self.countPoints))
         ## Kalau hanya ada < 2 titik, kembalikan 0 garis (tidak ada garis)
         if (self.countPoints < 2):
             return []
@@ -29,7 +29,7 @@ class myConvexHull:
             return [[0,1]]
         ## else (kalau ada > 2 titik)
         minAbsisPointIdx, maxAbsisPointIdx = self.MinMaxAbsisPoint()
-        leftPointsIdx, rightPointsIdx = self.splitPoints(allPointsIdx, self.allPoints[minAbsisPointIdx], self.allPoints[maxAbsisPointIdx])
+        leftPointsIdx, rightPointsIdx = self.splitPoints(self.allPointsIdx, self.allPoints[minAbsisPointIdx], self.allPoints[maxAbsisPointIdx])
         S1 = self.recursiveConvexHull(leftPointsIdx, minAbsisPointIdx, maxAbsisPointIdx, LEFT)      ## convex hull pada partisi atas
         S2 = self.recursiveConvexHull(rightPointsIdx, minAbsisPointIdx, maxAbsisPointIdx, RIGHT)    ## convex hull pada partisi bawah
         hullPointIdx = S1 + S2

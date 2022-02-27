@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import myConvexHull
 
 from sklearn import datasets 
-data = datasets.load_linnerud() 
+data = datasets.load_iris() 
 
 #create a DataFrame 
 df = pd.DataFrame(data.data, columns=data.feature_names) 
@@ -24,7 +24,7 @@ for i in range(len(data.target_names)):
     hull = myConvexHull.myConvexHull(bucket) #bagian ini diganti dengan hasil implementasi ConvexHull Divide & Conquer
     plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[i])
     for simplex in hull.simplices:
-        plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[i])
+        plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[i % len(colors)])
     plt.legend()
 plt.show()
 
@@ -40,6 +40,6 @@ for i in range(len(data.target_names)):
     hull = myConvexHull.myConvexHull(bucket) #bagian ini diganti dengan hasil implementasi ConvexHull Divide & Conquer
     plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[i])
     for simplex in hull.simplices:
-        plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[i])
+        plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[i % len(colors)])
     plt.legend()
 plt.show()

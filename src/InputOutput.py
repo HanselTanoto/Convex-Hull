@@ -4,14 +4,16 @@ Modul untuk menangani proses I/O dengan user beserta validasinya
 
 from sklearn import datasets
 
+# Memilih dataset (ada 3 pilihan)
 def chooseDataset():
     while (True):
         print("\nList of Datasets:")
         print("1. Iris plants dataset")
         print("2. Wine recognition dataset")
         print("3. Breast cancer wisconsin (diagnostic) dataset")
-        db = input("Choose database (1/2/3): ")
-        if (db == '1' or db == '2' or db == '3'):
+        print("4. Optical recognition of handwritten digits dataset")
+        db = input("Choose database (1/2/3/4): ")
+        if (db == '1' or db == '2' or db == '3' or db == '4'):
             break
         print("Invalid input, try again!")
     if (db == '1'):
@@ -20,8 +22,11 @@ def chooseDataset():
         data = datasets.load_wine()
     elif (db == '3'):
         data = datasets.load_breast_cancer()
+    elif (db == '4'):
+        data = datasets.load_digits()
     return data
 
+# Memilih pasangan atribut yang ingin dibuat convex hull-nya
 def chooseAttribute(data):
     print("\nList of Attributes:")
     for i in range (len(data.feature_names)):
@@ -38,6 +43,7 @@ def chooseAttribute(data):
         print("Invalid input, try again!\n")
     return atr1, atr2
 
+# Konfirmasi keluar dari program
 def exitConfirm():
     while (True):
         x = input("\nContinue? (Y/N): ")
